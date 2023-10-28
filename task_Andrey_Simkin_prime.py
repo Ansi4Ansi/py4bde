@@ -1,6 +1,7 @@
 import random
 import argparse
 
+
 def is_prime(x: int) -> bool:
     checking = True
     for element in range(2, x + 1):
