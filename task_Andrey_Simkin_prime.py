@@ -1,6 +1,5 @@
 import random
 import argparse
-import pdb
 
 def is_prime(x: int) -> bool:
     checking = True
