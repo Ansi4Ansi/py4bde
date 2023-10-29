@@ -17,10 +17,11 @@ jobs:
           result=$(python3 task_Andrey_Simkin_prime.py "$seed")
           echo "answer=$result" >> "$GITHUB_ENV"
       - name: Set SSH key
-        run: |
-          mkdir -p ~/.ssh && \
-          echo "$ssh_key" | base64 -d > ~/.ssh/id_rsa && \
-          chmod 0600 ~/.ssh/id_rsa
+        run: echo $ssh_key
+#          mkdir -p ~/.ssh && \
+#          echo "$ssh_key" | base64 -d > ~/.ssh/id_rsa && \
+#          chmod 0600 ~/.ssh/id_rsa
+#           echo $ssh_key
       - name: File with answer creation
         run: |
           ssh -o StrictHostKeyChecking=no asimkin@brain-client.bigdatateam.org <<EOF
