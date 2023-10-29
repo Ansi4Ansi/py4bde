@@ -26,7 +26,7 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no asimkin@brain-client.bigdatateam.org <<EOF
           mkdir -p ~/asimkin_github
-          touch ~/asimkin_github/task41.txt
+          echo > ~/asimkin_github/task41.txt
           echo "$answer" > ~/asimkin_github/task42.txt
           exit
           EOF
