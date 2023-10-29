@@ -2,7 +2,7 @@ name: CD Workflow
 on:
   push:
     branches:
-      - CD_branch
+      - CD_workflow
 
 jobs:
   deploying:
