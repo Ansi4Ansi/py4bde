@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - main
-      - CI_branch
+      - CI_workflow
 
 jobs:
   tests:
