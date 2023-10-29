@@ -1,0 +1,30 @@
+name: CD Workflow
+on:
+  push:
+    branches:
+      - CD_branch
+
+jobs:
+  deploying:
+    runs-on: ubuntu-latest
+    env:
+        ssh_key: ${{ secrets.SSH_KEY }}
+        seed: ${{ vars.SEED }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Python run for seed from GitHub Environmental Variable
+        run: |
+          result=$(python3 task_Andrey_Simkin.py "$seed")
+          echo "answer=$result" >> "$GITHUB_ENV"
+      - name: Set SSH key
+        run: |
+          mkdir -p ~/.ssh && \
+          echo "$ssh_key" | base64 -d > ~/.ssh/id_rsa && \
+          chmod 0600 ~/.ssh/id_rsa
+      - name: File with answer creation
+        run: |
+          ssh -o StrictHostKeyChecking=no asimkin@brain-client.bigdatateam.org <<EOF
+          mkdir -p ~/asimkin_github
+          echo "$answer" > ~/asimkin_github/task41.txt
+          exit
+          EOF
